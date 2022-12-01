@@ -190,8 +190,14 @@
 					<ul class="nav nav-primary">
 						<li class="nav-item active">
 							<a data-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
-								<i class="fas fa-home"></i>
+								<i class="fas fa-tachometer-alt"></i>
 								<p>Dashboard</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a data-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
+								<i class="fas fa-desktop"></i>
+								<p>Monitoring</p>
 							</a>
 						</li>
 						<li class="nav-item">
@@ -202,7 +208,7 @@
 						</li>
 						<li class="nav-item">
 							<a data-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
-								<i class="fas fa-home"></i>
+								<i class="fas fa-cogs"></i>
 								<p>Setting</p>
 							</a>
 						</li>
@@ -288,28 +294,9 @@
 				</div>
 			</div>
 			<footer class="footer">
-				<div class="container-fluid">
-					<nav class="pull-left">
-						<ul class="nav">
-							<li class="nav-item">
-								<a class="nav-link" href="https://www.themekita.com">
-									Smoke Detection
-								</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#">
-									Help
-								</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#">
-									Licenses
-								</a>
-							</li>
-						</ul>
-					</nav>
+				<div class="container-fluid">					
 					<div class="copyright ml-auto">
-						2022, made with <i class="fa fa-heart heart text-danger"></i> by <a href="https://www.themekita.com">Smoke Detection</a>
+						2022 ©️ Smoke Detection</a>
 					</div>				
 				</div>
 			</footer>
