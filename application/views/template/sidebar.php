@@ -38,26 +38,26 @@
                 </div>
             </div>
             <ul class="nav nav-primary">
-                <li class="nav-item active">
-                    <a data-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
+                <li class="nav-item <?php if($menu == 'Dashboard'){ echo "active";} ?>">
+                    <a href="<?= base_url('dashboard'); ?>">
                         <i class="fas fa-tachometer-alt"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a data-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
+                <li class="nav-item <?php if($menu == 'Monitoring'){ echo "active";} ?>">
+                    <a href="<?= base_url('monitoring') ?>">
                         <i class="fas fa-desktop"></i>
                         <p>Monitoring</p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a data-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
+                <li class="nav-item <?php if($menu == 'Dormitory'){ echo "active";} ?>">
+                    <a href="<?= base_url('dormitory') ?>">
                         <i class="fas fa-home"></i>
                         <p>Dormitory</p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a data-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
+                <li class="nav-item <?php if($menu == 'Setting'){ echo "active";} ?>">
+                    <a href="<?= base_url('setting') ?>">
                         <i class="fas fa-cogs"></i>
                         <p>Setting</p>
                     </a>

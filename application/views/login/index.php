@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="<?= base_url('assets/') ?>images/icons/favicon.ico"/>
+	<link rel="icon" type="image/png" href="<?= base_url('assets/') ?>/images/icon.png"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="<?= base_url('assets/') ?>vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -32,12 +32,7 @@
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('<?= base_url('assets/') ?>images/bg-01.jpg');">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-			<?php if ($this->session->flashdata('msg')) { ?>
-				<div class="alert alert-warning alert-dismissible">
-					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-					<strong>Warning!</strong><br> <?php echo $this->session->flashdata('msg'); ?>
-				</div>
-			<?php } ?>
+			<?= $this->session->flashdata('msg') ?>
 				<form class="login100-form validate-form" action="<?php echo base_url('login/proses_login') ?>" method="POST">
 					<span class="login100-form-title p-b-49">
 						Login <br> <h3>Smoke Detection</h3>
