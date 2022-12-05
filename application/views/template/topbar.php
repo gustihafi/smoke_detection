@@ -3,9 +3,10 @@
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<title>Monitoring Smoke Detection</title>
+	<script src="https://maps.googleapis.com/maps/api/js?key=&callback=myMap"></script>
 	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
 	<link rel="icon" href="<?= base_url('assets/') ?>/images/icon.png" type="image/x-icon"/>
-
+	
 	<!-- Fonts and icons -->
 	<script src="<?= base_url('assets/') ?>/js/plugin/webfont/webfont.min.js"></script>
 	<script>

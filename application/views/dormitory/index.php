@@ -1,6 +1,7 @@
 <div class="main-panel">
 			<div class="content">
 				<div class="page-inner">
+                <?= $this->session->flashdata('msg')?>
 					<div class="page-header">
 						<h4 class="page-title">Dormitory</h4>
 						<ul class="breadcrumbs">
@@ -48,18 +49,18 @@
 													</button>
 												</div>
 												<div class="modal-body">
-													<form>
+													<form action="<?= base_url('dormitory/add') ?>" method="POST">
 														<div class="row">
 															<div class="col-md-6 pr-0">
                                                                 <div class="form-group form-group-default">
 																	<label>Dormitory Room</label>
-																	<input id="addDorm" type="number" class="form-control" placeholder="fill dormitory room">
+																	<input name="room" id="addDorm" type="number" class="form-control" placeholder="fill dormitory room">
 																</div>
 															</div>
 															<div class="col-md-6">
 																<div class="form-group form-group-default">
 																	<label>Dormitory Type</label>
-																	<select class="form-control" id="formGroupDefaultSelect">
+																	<select name="dorm_type" class="form-control" id="formGroupDefaultSelect">
                                                                         <option></option>
                                                                         <option>North</option>
                                                                         <option>South</option>
@@ -68,19 +69,25 @@
                                                                     </select>
 																</div>
 															</div>
-                                                            <div class="col-sm-12">
+                                                            <div class="col-md-6">
 																<div class="form-group form-group-default">
-																	<label>Location (Maps)</label>
-																	<textarea id="addDorm"  class="form-control" placeholder="<iframe src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d459.09157370467165!2d120.25442674082689!3d22.996858844847957!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e7133113c5551%3A0x6c1acdb9fcf0f5d6!2sKun%20Shan%20University!5e0!3m2!1sen!2stw!4v1670251402847!5m2!1sen!2stw' width='600' height='450' style='border:0;' allowfullscreen='' loading='lazy' referrerpolicy='no-referrer-when-downgrade'></iframe>"></textarea>
+																	<label>Longitude</label>
+																	<input name="long" type="text" id="addLong"  class="form-control" placeholder="">
+																</div>
+															</div>
+                                                            <div class="col-md-6">
+																<div class="form-group form-group-default">
+																	<label>Latidude</label>
+																	<input name="lat" type="text" id="addLat"  class="form-control" placeholder="">
 																</div>
 															</div>
 														</div>
-													</form>
-												</div>
-												<div class="modal-footer no-bd">
-													<button type="button" id="addRowButton" class="btn btn-primary">Add</button>
-													<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-												</div>
+                                                    </div>
+                                                    <div class="modal-footer no-bd">
+                                                        <button type="submit" class="btn btn-primary">Add</button>
+                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                    </div>
+                                                </form>
 											</div>
 										</div>
 									</div>
@@ -106,20 +113,156 @@
 												</tr>
 											</tfoot>
 											<tbody>
-												<tr>
-													<td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
+                                            <?php 
+                                                $no=0;
+                                                foreach($dorm as $dt):
+                                                    $no++;
+                                            ?>
+                                                    <tr>
+													<td><?= $no; ?></td>
+                                                    <td><?= $dt['room']; ?></td>
+                                                    <td><?= $dt['dorm_type']; ?></td>
+                                                    <script>
+                                                        // fungsi initialize untuk mempersiapkan peta
+                                                        function initialize() {
+                                                        var propertiPeta = {
+                                                            center:new google.maps.LatLng(22.9977635,120.2508996),
+                                                            zoom:15,
+                                                            mapTypeId:google.maps.MapTypeId.ROADMAP
+                                                        };
+                                                        
+                                                        var peta = new google.maps.Map(document.getElementById("googleMap<?= $dt['id_dorm'] ?>"), propertiPeta);
+
+                                                        var marker=new google.maps.Marker({
+                                                            position: new google.maps.LatLng(<?= $dt['latitude'] ?>,<?= $dt['longitude'] ?>),
+                                                            map: peta
+                                                        });
+                                                        }
+
+                                                        // event jendela di-load  
+                                                        google.maps.event.addDomListener(window, 'load', initialize);
+                                                    </script>
+                                                    <td><button data-toggle="modal" data-target="#locate<?= $dt['id_dorm'] ?>" class="btn btn-primary btn-sm">Location</button></td>
+
+                                                    <div class="modal fade" id="locate<?= $dt['id_dorm'] ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header no-bd">
+                                                                    <h5 class="modal-title">
+                                                                        <span class="fw-mediumbold">
+                                                                        Location</span> 
+                                                                        <span class="fw-light">
+                                                                            Dormitory
+                                                                        </span>
+                                                                    </h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div id="googleMap<?= $dt['id_dorm'] ?>" style="width:100%;height:400px;"></div>
+                                                                    <div class="modal-footer no-bd">
+                                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
                                                     <td>
-                                                        <button type="button" class="btn btn-xs btn-icon btn-round btn-info">
+                                                        <button type="button" data-toggle="modal" data-target="#edit<?= $dt['id_dorm'] ?>" class="btn btn-xs btn-icon btn-round btn-info">
                                                             <i class="fa fa-pen"></i>
                                                         </button> &nbsp;
-                                                        <button type="button" class="btn btn-xs btn-icon btn-round btn-danger">
+                                                        <button type="button" data-toggle="modal" data-target="#delete<?= $dt['id_dorm'] ?>" class="btn btn-xs btn-icon btn-round btn-danger">
                                                             <i class="fa fa-trash"></i>
                                                         </button>
                                                     </td>
+
+                                                    <!-- Modal -->
+                                                <div class="modal fade" id="edit<?= $dt['id_dorm'] ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header no-bd">
+                                                                <h5 class="modal-title">
+                                                                    <span class="fw-mediumbold">
+                                                                    Edit</span> 
+                                                                    <span class="fw-light">
+                                                                        Dormitory
+                                                                    </span>
+                                                                </h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                                <div class="modal-body">
+                                                                    <form action="<?= base_url('dormitory/edit') ?>" method="POST">
+                                                                        <div class="row">
+                                                                            <div class="col-md-6 pr-0">
+                                                                                <div class="form-group form-group-default">
+                                                                                    <label>Dormitory Room</label>
+                                                                                    <input name="room" id="addDorm" type="number" class="form-control" value="<?= $dt['room'] ?>" placeholder="fill dormitory room">
+                                                                                </div>
+                                                                            </div>
+                                                                            
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group form-group-default">
+                                                                                    <label>Dormitory Type</label>
+                                                                                    <select name="dorm_type" class="form-control" id="formGroupDefaultSelect">
+                                                                                        <option></option>
+                                                                                        <option>North</option>
+                                                                                        <option>South</option>
+                                                                                        <option>Xing</option>
+                                                                                        <option>Yuan</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-12">
+                                                                                <script>
+                                                                                    // fungsi initialize untuk mempersiapkan peta
+                                                                                    function initialize() {
+                                                                                    var propertiPeta = {
+                                                                                        center:new google.maps.LatLng(22.9977635,120.2508996),
+                                                                                        zoom:15,
+                                                                                        mapTypeId:google.maps.MapTypeId.ROADMAP
+                                                                                    };
+                                                                                    
+                                                                                    var peta = new google.maps.Map(document.getElementById("googleMap<?= $dt['latitude'] ?>"), propertiPeta);
+
+                                                                                    var marker=new google.maps.Marker({
+                                                                                        position: new google.maps.LatLng(<?= $dt['latitude'] ?>,<?= $dt['longitude'] ?>),
+                                                                                        map: peta
+                                                                                    });
+                                                                                    }
+
+                                                                                    // event jendela di-load  
+                                                                                    google.maps.event.addDomListener(window, 'load', initialize);
+                                                                                </script>
+                                                                                <div id="googleMap<?= $dt['latitude'] ?>" style="width:100%;height:400px;"></div>
+                                                                                </div>
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group form-group-default">
+                                                                                    <label>Longitude</label>
+                                                                                    <input name="long" type="text" value="<?= $dt['longitude'] ?>" id="addLong"  class="form-control" placeholder="">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group form-group-default">
+                                                                                    <label>Latidude</label>
+                                                                                    <input type="hidden" value="<?= $dt['id_dorm'] ?>">
+                                                                                    <input name="lat" type="text" value="<?= $dt['latitude'] ?>" id="addLat"  class="form-control" placeholder="">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="modal-footer no-bd">
+                                                                        <button type="submit" class="btn btn-primary">Add</button>
+                                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
 												</tr>
+                                            <?php endforeach; ?>
 											</tbody>
 										</table>
 									</div>
