@@ -214,5 +214,16 @@
 			fillColor: 'rgba(255, 165, 52, .14)'
 		});
 	</script>
+	<script >
+		$(document).ready(function() {
+
+			// Add Row
+			$('#add-row').DataTable({
+				"pageLength": 5,
+			});
+
+			
+		});
+	</script>
 </body>
 </html>
