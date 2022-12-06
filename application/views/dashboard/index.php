@@ -15,7 +15,7 @@
 				<div class="page-inner mt--5">
 					<div class="row">
                         <div class="col-sm-6 col-md-4">
-							<div class="card card-stats card-round">
+							<div class="card card-stats card-round card-success">
 								<div class="card-body ">
 									<div class="row">
 										<div class="col-5">
@@ -25,7 +25,7 @@
 										</div>
 										<div class="col-7 col-stats">
 											<div class="numbers">
-												<p class="card-category">Location 1</p>
+												<p class="card-category"><b>Location 1</b></p>
 												<h4 class="card-title">150GB</h4>
 											</div>
 										</div>

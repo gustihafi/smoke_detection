@@ -177,7 +177,7 @@
                                                         </button>
                                                     </td>
 
-                                                    <!-- Modal -->
+                                                    <!-- Modal Edit -->
                                                 <div class="modal fade" id="edit<?= $dt['id_dorm'] ?>" tabindex="-1" role="dialog" aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
@@ -208,10 +208,10 @@
                                                                                     <label>Dormitory Type</label>
                                                                                     <select name="dorm_type" class="form-control" id="formGroupDefaultSelect">
                                                                                         <option></option>
-                                                                                        <option>North</option>
-                                                                                        <option>South</option>
-                                                                                        <option>Xing</option>
-                                                                                        <option>Yuan</option>
+                                                                                        <option <?php if($dt['dorm_type'] == 'North'){ echo "selected";} ?>>North</option>
+                                                                                        <option <?php if($dt['dorm_type'] == 'South'){ echo "selected";} ?>>South</option>
+                                                                                        <option <?php if($dt['dorm_type'] == 'Xing'){ echo "selected";} ?>>Xing</option>
+                                                                                        <option <?php if($dt['dorm_type'] == 'Yuan'){ echo "selected";} ?>>Yuan</option>
                                                                                     </select>
                                                                                 </div>
                                                                             </div>
@@ -247,17 +247,42 @@
                                                                             <div class="col-md-6">
                                                                                 <div class="form-group form-group-default">
                                                                                     <label>Latidude</label>
-                                                                                    <input type="hidden" value="<?= $dt['id_dorm'] ?>">
+                                                                                    <input name="id_dorm" type="hidden" value="<?= $dt['id_dorm'] ?>">
                                                                                     <input name="lat" type="text" value="<?= $dt['latitude'] ?>" id="addLat"  class="form-control" placeholder="">
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                     <div class="modal-footer no-bd">
-                                                                        <button type="submit" class="btn btn-primary">Add</button>
+                                                                        <button type="submit" class="btn btn-primary">Edit</button>
                                                                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                                                     </div>
                                                                 </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Modal Delete -->
+                                                    <div class="modal fade" id="delete<?= $dt['id_dorm'] ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header no-bd">
+                                                                    <h5 class="modal-title">
+                                                                        <span class="fw-mediumbold">
+                                                                        Delete</span> 
+                                                                        <span class="fw-light">
+                                                                            Dormitory
+                                                                        </span>
+                                                                    </h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <h3>Are you sure delete <b><?= $dt['room'] ?></b>?</h3>
+                                                                    <div class="modal-footer no-bd">
+                                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                                    </div>
                                                             </div>
                                                         </div>
                                                     </div>

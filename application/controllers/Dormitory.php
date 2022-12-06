@@ -42,4 +42,31 @@ class Dormitory extends CI_Controller
         redirect(base_url('dormitory'));
     }
 
+    public function edit(){
+        $data = array(
+			'room' => $_POST['room'], 
+			'dorm_type' => $_POST['dorm_type'],
+			'longitude' => $_POST['long'],
+            'latitude' => $_POST['lat']
+        );
+        $id = $_POST['id_dorm'];
+        $this->m_dorm->edit($data,$id);
+        $this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-check"></i> Success!</h4>
+            Edit Data success!
+            </div>');
+        redirect(base_url('dormitory'));
+    }
+
+    public function hapus($id){
+        $this->m_dorm->hapus($id);
+        $this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-check"></i> Success!</h4>
+            Delete Data success!
+            </div>');
+        redirect(base_url('dormitory'));
+    }
+
 }
