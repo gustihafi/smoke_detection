@@ -3,7 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class M_account extends CI_Model
 {
     public function getUserInfo($id){
-        $q = $this->db->get_where('users', array('id_user' => $id), 1);
+        $q = $this->db->get_where('users', array('user_id' => $id), 1);
         if ($this->db->affected_rows() > 0) {
             $row = $q->row();
             return $row;
@@ -68,7 +68,7 @@ class M_account extends CI_Model
 
     public function updatePassword($post)
     {
-        $this->db->where('id_user', $post['id_user']);
+        $this->db->where('user_id', $post['user_id']);
         $this->db->update('users', array('password' => $post['password']));
         return true;
     }

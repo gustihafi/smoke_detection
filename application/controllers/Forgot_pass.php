@@ -26,8 +26,7 @@ class Forgot_pass extends CI_Controller
 
     public function process_token(){
         $email = $this->input->post('email');
-        $clean = $this->security->xss_clean($email);
-        $userInfo = $this->m_account->getUserInfoByEmail($clean);
+        $userInfo = $this->m_account->getUserInfoByEmail($email);
 
         if (!$userInfo) {
             $this->session->set_flashdata('msg', '<div class="alert alert-danger alert-dismissible">
@@ -38,7 +37,7 @@ class Forgot_pass extends CI_Controller
             redirect(site_url('login'), 'refresh');
         }
 
-        $token = $this->m_account->insertToken($userInfo->id_user);
+        $token = $this->m_account->insertToken($userInfo->user_id);
         $qstring = $this->base64url_encode($token);
         $url = site_url() . '/forgot_pass/reset_password/token/' . $qstring;
         $link = '<a href="' . $url . '">' . $url . '</a>';
@@ -82,7 +81,7 @@ class Forgot_pass extends CI_Controller
         if ($mail->send()) {
             $this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h4><i class="icon fa fa-ban"></i> Failed!</h4>
+                <h4><i class="icon fa fa-check"></i> Success!</h4>
                 your email is correct. please check your email!
                 </div>');
             redirect(site_url('login'));
@@ -104,30 +103,31 @@ class Forgot_pass extends CI_Controller
         }
 
         $data = array(
-            'title' => 'Halaman Reset Password | Tutorial reset password CodeIgniter @ https://recodeku.blogspot.com',
-            'nama' => $user_info->nama,
+            'title' => 'Reset Password',
             'email' => $user_info->email,
             'token' => $this->base64url_encode($token)
         );
 
-        $this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
-        $this->form_validation->set_rules('passconf', 'Password Confirmation', 'required|matches[password]');
-
-        if ($this->form_validation->run() == FALSE) {
-            $this->load->view('account/v_reset_password', $data);
-        } else {
-
+            $this->load->view('login/reset_password', $data);
+        if($this->input->post(NULL, TRUE)){
             $post = $this->input->post(NULL, TRUE);
             $cleanPost = $this->security->xss_clean($post);
             $hashed = md5($cleanPost['password']);
             $cleanPost['password'] = $hashed;
-            $cleanPost['id_user'] = $user_info->id_user;
+            $cleanPost['user_id'] = $user_info->user_id;
             unset($cleanPost['passconf']);
             if (!$this->m_account->updatePassword($cleanPost)) {
-                $this->session->set_flashdata('sukses', 'Update password gagal.');
+                $this->session->set_flashdata('msg', '<div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-ban"></i> Failed!</h4>
+                Fail to update password
+                </div>');
             } else {
-                $this->session->set_flashdata('sukses', 'Password anda sudah  
-             diperbaharui. Silakan login.');
+                $this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-check"></i> Success!</h4>
+                update password successfully
+                </div>');
             }
             redirect(site_url('login'), 'refresh');
         }
