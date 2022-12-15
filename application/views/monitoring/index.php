@@ -52,22 +52,27 @@
 												</tr>
 											</tfoot>
 											<tbody>
+											<?php 
+                                                $no=0;
+                                                foreach($moni as $dt):
+                                                    $no++;
+                                            ?>
                                                     <tr>
-													<td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td><button data-toggle="modal" data-target="#" class="btn btn-primary btn-sm">Location</button></td>
+													<td><?= $dt['created_at'] ?></td>
+                                                    <td><?= $dt['dorm_type'].', '.$dt['room'] ?></td>
+                                                    <td><?= $dt['temp_val'] ?></td>
+                                                    <td><?= $dt['hum_val'] ?></td>
+                                                    <td><?= $dt['smoke_lvl'] ?></td>
 
                                                     <td>
-                                                        <button type="button" data-toggle="modal" data-target="#" class="btn btn-xs btn-icon btn-round btn-info">
-                                                            <i class="fa fa-pen"></i>
-                                                        </button> &nbsp;
-                                                        <button type="button" data-toggle="modal" data-target="#" class="btn btn-xs btn-icon btn-round btn-danger">
-                                                            <i class="fa fa-trash"></i>
-                                                        </button>
+													<?php if($dt['smoke_lvl'] < 300){ ?>
+														<button class="btn btn-primary btn-sm">No smoke detected!</button>
+													<?php }else{ ?>
+														<button class="btn btn-danger btn-sm">Smoke detected!</button>
+													<?php } ?>
                                                     </td>
 												</tr>
+											<?php endforeach; ?>
 											</tbody>
 										</table>
 									</div>

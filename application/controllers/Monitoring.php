@@ -5,7 +5,7 @@ class Monitoring extends CI_Controller
         date_default_timezone_set('Asia/Taipei');
         parent::__construct();
         $this->load->helper(array('form', 'url'));
-        $this->load->model('m_dorm');
+        $this->load->model('m_moni');
         if($this->session->userdata('status') != 'login'){
             $this->session->set_flashdata('msg', '<div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -18,7 +18,7 @@ class Monitoring extends CI_Controller
 
     public function index(){
         $data['menu'] = "Monitoring";
-        $data['dorm'] = $this->m_dorm->get();
+        $data['moni'] = $this->m_moni->get();
         $this->load->view('template/topbar',$data);
         $this->load->view('template/sidebar');
         $this->load->view('monitoring/index');
