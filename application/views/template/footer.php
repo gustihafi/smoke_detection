@@ -225,5 +225,28 @@
 			
 		});
 	</script>
+	<script>
+		$("body").on('click', '.last-pass', function() {
+		$(this).toggleClass("fa-eye fa-eye-slash");
+		var input = $("#LastPass");
+		if (input.attr("type") === "password") {
+			input.attr("type", "text");
+		} else {
+			input.attr("type", "password");
+		}
+
+		});
+
+		$("body").on('click', '.new-pass', function() {
+		$(this).toggleClass("fa-eye fa-eye-slash");
+		var input = $("#NewPass");
+		if (input.attr("type") === "password") {
+			input.attr("type", "text");
+		} else {
+			input.attr("type", "password");
+		}
+
+		});
+	</script>
 </body>
 </html>

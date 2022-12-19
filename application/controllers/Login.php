@@ -34,6 +34,7 @@ class Login extends CI_Controller
             $data_session = array(
                             'user_id' => $isi->user_id,
                             'name' => $isi->name,
+                            'image' => $isi->image,
                             'email' => $email,
                             'date_create' => $isi->date_create,
                             'login_date' => $isi->login_date,

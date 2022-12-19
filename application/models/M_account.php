@@ -2,6 +2,10 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 class M_account extends CI_Model
 {
+    public function getUser($id){
+        return $this->db->query('SELECT * FROM users WHERE user_id='.$id)->result_array();
+    }
+
     public function getUserInfo($id){
         $q = $this->db->get_where('users', array('user_id' => $id), 1);
         if ($this->db->affected_rows() > 0) {
@@ -11,6 +15,16 @@ class M_account extends CI_Model
             error_log('no user found getUserInfo(' . $id . ')');
             return false;
         }
+    }
+
+    public function edit_profile($data,$id){
+        $this->db->where('user_id',$id);
+		$this->db->update('users',$data);
+    }
+
+    public function edit_password($data,$id){
+        $this->db->where('user_id',$id);
+		$this->db->update('users',$data);
     }
 
     public function getUserInfoByEmail($email)
