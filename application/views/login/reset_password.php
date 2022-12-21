@@ -1,3 +1,4 @@
+<?php error_reporting(0); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,13 +35,14 @@
 			<div class="wrap-login100 p-l-55 p-r-55 p-b-54">
             <div class="wrap-login100 p-r-55 p-t-10 p-b-65"><a href="<?= base_url('login') ?>" style="font-size:25px;"><i class="fa fa-arrow-left"></i></a></div>
 			<?= $this->session->flashdata('msg') ?>
-				<form class="login100-form validate-form" action="<?php echo base_url('forgot_pass/reset_password') ?>" method="POST">
+				<form class="login100-form validate-form" action="<?php echo base_url('forgot_pass/process_reset_password') ?>" method="POST">
 					<span class="login100-form-title p-b-49">
 						Reset Password
 					</span>
 
 					<div class="wrap-input100 validate-input m-b-23" data-validate = "Password is reauired">
 						<span class="label-input100">Password</span>
+						<input type="hidden" name="email" value="<?= $email ?>">
 						<input class="input100" type="password" name="password" placeholder="Type your password">
 						<span class="focus-input100" data-symbol="&#128274;"></span>
 					</div>
@@ -54,7 +56,7 @@
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn">
+							<button name="submit" class="login100-form-btn">
 								Submit
 							</button>
 						</div>

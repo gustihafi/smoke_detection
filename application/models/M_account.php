@@ -80,10 +80,10 @@ class M_account extends CI_Model
         }
     }
 
-    public function updatePassword($post)
+    public function updatePassword($email,$pass)
     {
-        $this->db->where('user_id', $post['user_id']);
-        $this->db->update('users', array('password' => $post['password']));
+        $this->db->where('email', $email);
+        $this->db->update('users', array('pass' => $pass));
         return true;
     }
 }
