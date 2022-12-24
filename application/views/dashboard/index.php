@@ -28,7 +28,7 @@
 										</div>
 										<div class="col-7 col-stats">
 											<div class="numbers">
-												<h4 class="card-title"><b>Location 1</b></h4>
+												<h4 class="card-title"><b><?= $dt['dorm_type'].', '.$dt['room'] ?></b></h4>
 												<b><p>No smoke detected</p></b>
 											</div>
 										</div>
@@ -48,7 +48,7 @@
 										</div>
 										<div class="col-7 col-stats">
 											<div class="numbers">
-												<h4 class="card-title"><b>Location 1</b></h4>
+												<h4 class="card-title"><b><?= $dt['dorm_type'].', '.$dt['room'] ?></b></h4>
 												<b><p>Smoke detected!</p></b>
 											</div>
 										</div>
@@ -72,7 +72,7 @@
 										</div>
 										<div class="col-7 col-stats">
 											<div class="numbers">
-												<h4 class="card-title"><b>Location 2</b></h4>
+												<h4 class="card-title"><b><?= $dt['dorm_type'].', '.$dt['room'] ?></b></h4>
 												<b><p>No smoke detected!</p></b>
 											</div>
 										</div>
@@ -92,7 +92,7 @@
 										</div>
 										<div class="col-7 col-stats">
 											<div class="numbers">
-												<h4 class="card-title"><b>Location 2</b></h4>
+												<h4 class="card-title"><b><?= $dt['dorm_type'].', '.$dt['room'] ?></b></h4>
 												<b><p>Smoke detected!</p></b>
 											</div>
 										</div>
@@ -116,7 +116,7 @@
 										</div>
 										<div class="col-7 col-stats">
 											<div class="numbers">
-												<h4 class="card-title"><b>Location 3</b></h4>
+												<h4 class="card-title"><b><?= $dt['dorm_type'].', '.$dt['room'] ?></b></h4>
 												<b><p>No smoke detected</p></b>
 											</div>
 										</div>

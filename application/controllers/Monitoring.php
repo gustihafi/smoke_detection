@@ -19,6 +19,8 @@ class Monitoring extends CI_Controller
     public function index(){
         $data['menu'] = "Monitoring";
         $data['moni'] = $this->m_moni->get();
+        $data['smoke'] = $this->m_moni->get_smoke();
+        $data['count'] = $this->m_moni->count_smoke();
         $this->load->view('template/topbar',$data);
         $this->load->view('template/sidebar');
         $this->load->view('monitoring/index');
