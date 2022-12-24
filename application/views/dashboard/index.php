@@ -149,7 +149,22 @@
 					</div>
 					<!-- Grafik -->
 					<div class="row">
-						<div class="col-sm-6"></div>
+						<div class="col-md-12">
+							<div class="card">
+								<div class="card-header">
+									<div class="card-title">Chart with HTML Legends</div>
+								</div>
+								<div class="card-body">
+									<div class="card-sub">
+									This is the graphic of smoke levels, so that we know every hour of smoke levels in every dormitory room.
+									</div>
+									<div class="chart-container">
+										<canvas id="htmlLegendsChart"></canvas>
+									</div>
+									<div id="myChartLegend"></div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
