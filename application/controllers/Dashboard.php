@@ -18,12 +18,20 @@ class Dashboard extends CI_Controller
 
     public function index(){
         $data['menu'] = "Dashboard";
+        $data['moni'] = $this->m_moni->get();
         $data['dorm1'] = $this->m_moni->get_last(1);
         $data['dorm2'] = $this->m_moni->get_last(2);
         $data['dorm3'] = $this->m_moni->get_last(3);
-        $this->load->view('template/topbar');
-        $this->load->view('template/sidebar',$data);
+        $data['smoke'] = $this->m_moni->get_smoke();
+        $data['count'] = $this->m_moni->count_smoke();
+        $x['data'] = $this->m_moni->get_time();
+        $x['data1'] = $this->m_moni->get_grafik(1);
+        $x['data2'] = $this->m_moni->get_grafik(2);
+        $x['data3'] = $this->m_moni->get_grafik(3);
+        $this->load->view('template/topbar',$data);
+        $this->load->view('template/sidebar');
         $this->load->view('dashboard/index');
-        $this->load->view('template/footer');
+        $this->load->view('template/footer',$x);
     }
+
 }

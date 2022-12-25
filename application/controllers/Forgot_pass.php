@@ -45,8 +45,6 @@ class Forgot_pass extends CI_Controller
         // Instantiation and passing `true` enables exceptions
         $mail = new PHPMailer(true);
  
-        $no_invoice         = $this->input->post('pesan');
-        $nama_pengirim      = $this->input->post('judul');
         $email              = $this->input->post('email');
 
         //Server settings
@@ -76,7 +74,7 @@ class Forgot_pass extends CI_Controller
         // Content
         $mail->isHTML(true);                                  // Set email format to HTML
         $mail->Subject = 'Reset Password';
-        $mail->Body    = '<strong>Hai, You received this email because there was a request to update your password.</strong><br><strong>Silakan klik link ini:</strong>'.$link;
+        $mail->Body    = '<strong>Hai, You received this email because there was a request to reset your password.</strong><br><strong>Silakan klik link ini:</strong>'.$link;
 
         if ($mail->send()) {
             $this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible">
@@ -98,7 +96,11 @@ class Forgot_pass extends CI_Controller
         $user_info = $this->m_account->isTokenValid($cleanToken); //either false or array();          
 
         if (!$user_info) {
-            $this->session->set_flashdata('sukses', 'Token tidak valid atau kadaluarsa');
+            $this->session->set_flashdata('msg', '<div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-ban"></i> Failed!</h4>
+                Tokens is invalid
+                </div>');
             redirect(site_url('login'), 'refresh');
         }
 
@@ -109,27 +111,30 @@ class Forgot_pass extends CI_Controller
         );
 
             $this->load->view('login/reset_password', $data);
-        if($this->input->post(NULL, TRUE)){
-            $post = $this->input->post(NULL, TRUE);
-            $cleanPost = $this->security->xss_clean($post);
-            $hashed = md5($cleanPost['password']);
-            $cleanPost['password'] = $hashed;
-            $cleanPost['user_id'] = $user_info->user_id;
-            unset($cleanPost['passconf']);
-            if (!$this->m_account->updatePassword($cleanPost)) {
-                $this->session->set_flashdata('msg', '<div class="alert alert-danger alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h4><i class="icon fa fa-ban"></i> Failed!</h4>
-                Fail to update password
-                </div>');
-            } else {
-                $this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h4><i class="icon fa fa-check"></i> Success!</h4>
-                update password successfully
-                </div>');
-            }
-            redirect(site_url('login'), 'refresh');
+    }
+
+    public function process_reset_password()
+    {
+        // $post = $this->input->post(NULL, TRUE);
+        // $cleanPost = $this->security->xss_clean($post);
+        $hashed = md5($_POST['password']);
+        $pass = $hashed;
+        $email = $_POST['email'];
+        unset($_POST['passconf']);
+        if (!$this->m_account->updatePassword($email,$pass)) {
+            $this->session->set_flashdata('msg', '<div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-ban"></i> Failed!</h4>
+            Fail to update password
+            </div>');
+            redirect(site_url('login'));
+        } else {
+            $this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-check"></i> Success!</h4>
+            update password successfully
+            </div>');
+            redirect(site_url('login'));
         }
     }
 

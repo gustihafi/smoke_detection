@@ -58,53 +58,27 @@
 						<li class="nav-item dropdown hidden-caret">
 							<a class="nav-link dropdown-toggle" href="#" id="notifDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								<i class="fa fa-bell"></i>
-								<span class="notification">4</span>
+								<span class="notification"><?= $count; ?></span>
 							</a>
 							<ul class="dropdown-menu notif-box animated fadeIn" aria-labelledby="notifDropdown">
 								<li>
-									<div class="dropdown-title">You have 4 new notification</div>
+									<div class="dropdown-title">You have <?= $count; ?> new notification</div>
 								</li>
 								<li>
 									<div class="notif-scroll scrollbar-outer">
 										<div class="notif-center">
+										<?php 
+											foreach($smoke as $dt): ?>
 											<a href="#">
-												<div class="notif-icon notif-primary"> <i class="fa fa-user-plus"></i> </div>
+												<div class="notif-icon notif-danger"> <i class="fas fa-exclamation-triangle"></i> </div>
 												<div class="notif-content">
 													<span class="block">
-														New user registered
+														<b>Smoke Detected!</b><br><?= $dt['dorm_type'].', '.$dt['room'] ?>
 													</span>
-													<span class="time">5 minutes ago</span> 
+													<span class="time"><?= $dt['created_at'] ?></span> 
 												</div>
 											</a>
-											<a href="#">
-												<div class="notif-icon notif-success"> <i class="fa fa-comment"></i> </div>
-												<div class="notif-content">
-													<span class="block">
-														Rahmad commented on Admin
-													</span>
-													<span class="time">12 minutes ago</span> 
-												</div>
-											</a>
-											<a href="#">
-												<div class="notif-img"> 
-													<img src="<?= base_url('assets/') ?>/images/profile2.jpg" alt="Img Profile">
-												</div>
-												<div class="notif-content">
-													<span class="block">
-														Reza send messages to you
-													</span>
-													<span class="time">12 minutes ago</span> 
-												</div>
-											</a>
-											<a href="#">
-												<div class="notif-icon notif-danger"> <i class="fa fa-heart"></i> </div>
-												<div class="notif-content">
-													<span class="block">
-														Farrah liked Admin
-													</span>
-													<span class="time">17 minutes ago</span> 
-												</div>
-											</a>
+											<?php endforeach; ?>
 										</div>
 									</div>
 								</li>
@@ -116,23 +90,21 @@
 						<li class="nav-item dropdown hidden-caret">
 							<a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
 								<div class="avatar-sm">
-									<img src="<?= base_url('assets/') ?>/images/profile.jpg" alt="..." class="avatar-img rounded-circle">
+									<img src="<?= base_url('assets/images/'.$this->session->image) ?>" alt="..." class="avatar-img rounded-circle">
 								</div>
 							</a>
 							<ul class="dropdown-menu dropdown-user animated fadeIn">
 								<div class="dropdown-user-scroll scrollbar-outer">
 									<li>
 										<div class="user-box">
-											<div class="avatar-lg"><img src="<?= base_url('assets/') ?>/images/profile.jpg" alt="image profile" class="avatar-img rounded"></div>
+											<div class="avatar-lg"><img src="<?= base_url('assets/images/'.$this->session->image) ?>" alt="image profile" class="avatar-img rounded"></div>
 											<div class="u-text">
 												<h4><?= $this->session->name ?></h4>
-												<p class="text-muted"><?= $this->session->email ?></p><a href="profile.html" class="btn btn-xs btn-secondary btn-sm">View Profile</a>
+												<p class="text-muted"><?= $this->session->email ?></p><a href="<?= base_url('profile') ?>" class="btn btn-xs btn-secondary btn-sm">View Profile</a>
 											</div>
 										</div>
 									</li>
 									<li>
-										<div class="dropdown-divider"></div>
-										<a class="dropdown-item" href="#">My Profile</a>
 										<div class="dropdown-divider"></div>
 										<a class="dropdown-item" href="<?= base_url('login/logout') ?>">Logout</a>
 									</li>

@@ -99,8 +99,8 @@
 													<th>No</th>
 													<th>Dormitory Room</th>
 													<th>Type</th>
-                                                    <th>Locate</th>
-													<th style="width: 10%">Action</th>
+                                                    <th style="width: 10%">Locate</th>
+													<th>Action</th>
 												</tr>
 											</thead>
 											<tfoot>

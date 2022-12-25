@@ -28,7 +28,7 @@
 										</div>
 										<div class="col-7 col-stats">
 											<div class="numbers">
-												<h4 class="card-title"><b>Location 1</b></h4>
+												<h4 class="card-title"><b><?= $dt['dorm_type'].', '.$dt['room'] ?></b></h4>
 												<b><p>No smoke detected</p></b>
 											</div>
 										</div>
@@ -48,7 +48,7 @@
 										</div>
 										<div class="col-7 col-stats">
 											<div class="numbers">
-												<h4 class="card-title"><b>Location 1</b></h4>
+												<h4 class="card-title"><b><?= $dt['dorm_type'].', '.$dt['room'] ?></b></h4>
 												<b><p>Smoke detected!</p></b>
 											</div>
 										</div>
@@ -72,7 +72,7 @@
 										</div>
 										<div class="col-7 col-stats">
 											<div class="numbers">
-												<h4 class="card-title"><b>Location 2</b></h4>
+												<h4 class="card-title"><b><?= $dt['dorm_type'].', '.$dt['room'] ?></b></h4>
 												<b><p>No smoke detected!</p></b>
 											</div>
 										</div>
@@ -92,7 +92,7 @@
 										</div>
 										<div class="col-7 col-stats">
 											<div class="numbers">
-												<h4 class="card-title"><b>Location 2</b></h4>
+												<h4 class="card-title"><b><?= $dt['dorm_type'].', '.$dt['room'] ?></b></h4>
 												<b><p>Smoke detected!</p></b>
 											</div>
 										</div>
@@ -116,7 +116,7 @@
 										</div>
 										<div class="col-7 col-stats">
 											<div class="numbers">
-												<h4 class="card-title"><b>Location 3</b></h4>
+												<h4 class="card-title"><b><?= $dt['dorm_type'].', '.$dt['room'] ?></b></h4>
 												<b><p>No smoke detected</p></b>
 											</div>
 										</div>
@@ -149,7 +149,22 @@
 					</div>
 					<!-- Grafik -->
 					<div class="row">
-						<div class="col-sm-6"></div>
+						<div class="col-md-12">
+							<div class="card">
+								<div class="card-header">
+									<div class="card-title">Chart with HTML Legends</div>
+								</div>
+								<div class="card-body">
+									<div class="card-sub">
+									This is the graphic of smoke levels, so that we know every hour of smoke levels in every dormitory room.
+									</div>
+									<div class="chart-container">
+										<canvas id="htmlLegendsChart"></canvas>
+									</div>
+									<div id="myChartLegend"></div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
