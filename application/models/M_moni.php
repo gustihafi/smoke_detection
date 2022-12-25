@@ -41,7 +41,7 @@ class M_moni extends CI_Model
     }
 
     public function add($data){
-        $this->db->insert('smoke',$data);
+       return $this->db->insert('smoke',$data);
     }
 
 }

@@ -40,12 +40,12 @@ class Monitoring extends CI_Controller
 
     public function add(){
         $data = array(
-			'id_dorm' => $_POST['id_dorm'] ,
-			'temp_lvl' => $_POST['temperature'], 
-			'hum_val' => $_POST['humidity'],
-			'smoke_lvl' => $_POST['smoke']
+			'id_dorm' => $_GET['id_dorm'] ,
+			'temp_val' => $_GET['temperature'], 
+			'hum_val' => $_GET['humidity'],
+			'smoke_lvl' => $_GET['smoke']
 		);
-        if($this->m_moni->add($data)){
+        if($this->m_moni->add($data) == true){
             echo "New record created successfully";
         }else {
             $this->db->_error_message();
