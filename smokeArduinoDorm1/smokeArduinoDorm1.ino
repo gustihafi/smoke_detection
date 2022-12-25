@@ -1,7 +1,6 @@
 #define BLYNK_TEMPLATE_ID "TMPLSKZaZc8s"
-#define BLYNK_DEVICE_NAME "Smoke Sensor Dormitory"
-#define BLYNK_AUTH_TOKEN "0t0nkLeUTmiEDOG_tBBMqmhqDmvbFRPR"
-
+#define BLYNK_DEVICE_NAME "Dorm 1"
+#define BLYNK_AUTH_TOKEN "YIwk_sHsBT3SgZKt0ETuoDaikwGuK1Yj"
 
 // Comment this out to disable prints and save space
 #define BLYNK_PRINT Serial
@@ -22,9 +21,17 @@ char auth[] = BLYNK_AUTH_TOKEN;
 
 // Your WiFi credentials.
 // Set password to "" for open networks.
-char ssid[] = "LAB_I2605";
-char pass[] = "OMmqPakr8z";
-const char* serverName = "http://192.168.50.240/project_ksu/insert_temp.php";
+//char ssid[] = "LAB_I2605";
+//char pass[] = "OMmqPakr8z";
+//char ssid[] = "lalak";
+//char pass[] = "lalalala";
+char ssid[] = "5915 kamar damai";
+char pass[] = "lulus2023";
+//char W_APIKey='ZKS8W4YM981317UB'
+//char R_APIKey='HAWLA0Y6YJBTNJ5N'
+//char Channel_Id='1681804'
+//const char* serverName = "http://192.168.50.240/project_ksu/insert_temp.php";
+const char* serverName = "http://192.168.31.88/project_ksu/insert_temp.php";
 
 //char ssid[] = "lalalilo";
 //char pass[] = "lalalala";
@@ -95,12 +102,12 @@ void getSendData()
   Serial.println(h);
 
   //String postData = (String)"id=" + 1 + "&status=" + status;
-  String postData = (String)"temperature=" + t + "&humidity=" + h + "&smoke=" + data + "&id=2";
+  String postData = (String)"temperature=" + t + "&humidity=" + h + "&smoke=" + data + "&id=3";
   HTTPClient http;
   WiFiClientSecure client;
   client.setInsecure();
-    
-  http.begin(client,"https://192.168.50.240/project_ksu/insert_temp.php");
+  //http.begin(client,"https://192.168.50.240/project_ksu/insert_temp.php");
+  http.begin(client,"https://192.168.31.88/project_ksu/insert_temp.php");
   http.addHeader("Content-Type", "application/x-www-form-urlencoded");
 
   auto httpCode = http.POST(postData);
