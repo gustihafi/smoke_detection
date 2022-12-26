@@ -25,13 +25,16 @@ char auth[] = BLYNK_AUTH_TOKEN;
 //char pass[] = "OMmqPakr8z";
 //char ssid[] = "lalak";
 //char pass[] = "lalalala";
-char ssid[] = "5915 kamar damai";
-char pass[] = "lulus2023";
+char ssid[] = "pw: abcdefuck";
+char pass[] = "abcdefuck";
+//char ssid[] = "5915 kamar damai";
+//char pass[] = "lulus2023";
 //char W_APIKey='ZKS8W4YM981317UB'
 //char R_APIKey='HAWLA0Y6YJBTNJ5N'
 //char Channel_Id='1681804'
 //const char* serverName = "http://192.168.50.240/project_ksu/insert_temp.php";
-const char* serverName = "http://192.168.31.88/project_ksu/insert_temp.php";
+const char* serverName = "https://192.168.137.1/smoke_detection/monitoring/add";
+//const char* serverName = "http://192.168.31.88/project_ksu/insert_temp.php";
 
 //char ssid[] = "lalalilo";
 //char pass[] = "lalalala";
@@ -106,8 +109,9 @@ void getSendData()
   HTTPClient http;
   WiFiClientSecure client;
   client.setInsecure();
-  //http.begin(client,"https://192.168.50.240/project_ksu/insert_temp.php");
-  http.begin(client,"https://192.168.31.88/project_ksu/insert_temp.php");
+//  //http.begin(client,"https://192.168.50.240/project_ksu/insert_temp.php");
+http.begin(client,"https://192.168.137.1/smoke_detection/monitoring/add");
+//  http.begin(client,"https://192.168.31.88/project_ksu/insert_temp.php");
   http.addHeader("Content-Type", "application/x-www-form-urlencoded");
 
   auto httpCode = http.POST(postData);
