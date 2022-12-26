@@ -32,11 +32,17 @@ class Monitoring extends CI_Controller
         $data['moni'] = $this->m_moni->get();
         $data['smoke'] = $this->m_moni->get_smoke();
         $data['count'] = $this->m_moni->count_smoke();
+        // $data['real'] = $this->m_moni->get_real();
         $this->load->view('template/topbar',$data);
         $this->load->view('template/sidebar');
         $this->load->view('monitoring/index');
         $this->load->view('template/footer');
     }
+
+    // function get_real(){
+    //     $data = $this->m_moni->get_real()->result();
+    //     echo json_encode($data);
+    // }
 
     public function add(){
         $data = array(
@@ -119,4 +125,5 @@ class Monitoring extends CI_Controller
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }
     }
+
 }

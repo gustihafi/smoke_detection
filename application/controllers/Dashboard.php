@@ -30,8 +30,8 @@ class Dashboard extends CI_Controller
         $x['data3'] = $this->m_moni->get_grafik(3);
         $this->load->view('template/topbar',$data);
         $this->load->view('template/sidebar');
-        $this->load->view('dashboard/index');
-        $this->load->view('template/footer',$x);
+        $this->load->view('dashboard/index',$x);
+        $this->load->view('template/footer');
     }
 
 }

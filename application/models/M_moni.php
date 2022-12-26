@@ -6,6 +6,11 @@ class M_moni extends CI_Model
         return $this->db->query('SELECT * FROM temp a JOIN dormitory b ON a.id_dorm=b.id_dorm ORDER BY a.created_at DESC')->result_array();
     }
 
+    // function get_real(){
+    //     $query = $this->db->query('SELECT * FROM temp a JOIN dormitory b ON a.id_dorm=b.id_dorm ORDER BY a.created_at DESC LIMIT 10');
+    //     return $query;
+    // }
+
     public function get_last($id_dorm){
         return $this->db->query('SELECT * FROM temp a JOIN dormitory b ON a.id_dorm=b.id_dorm WHERE a.id_dorm='.$id_dorm.' AND DAY(created_at)=DAY(NOW()) AND MONTH(created_at)=MONTH(NOW()) AND YEAR(created_at)=YEAR(NOW()) ORDER BY created_at DESC LIMIT 1')->result_array();
     }
@@ -43,5 +48,6 @@ class M_moni extends CI_Model
     public function add($data){
        return $this->db->insert('smoke',$data);
     }
+    
 
 }

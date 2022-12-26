@@ -1,3 +1,4 @@
+<?php error_reporting(0); ?>
 <div class="main-panel">
 			<div class="content">
 				<div class="page-inner">

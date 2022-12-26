@@ -219,7 +219,8 @@
 
 			// Add Row
 			$('#add-row').DataTable({
-				"pageLength": 5,
+				"pageLength": 10,
+				 order: [],
 			});
 
 			
@@ -402,5 +403,28 @@
 			legendItems[i].addEventListener("click", legendClickCallback, false);
 		}
 	</script>
+<!-- 
+<script>
+	$(document).ready(function() {
+    selesai();
+});
+ 
+function selesai() {
+	setTimeout(function() {
+		update();
+		selesai();
+	}, 200);
+}
+ 
+function update() {
+	$.getJSON("<?= base_url('monitoring/get_real') ?>", function(data) {
+		$("tbody").empty();
+		var no = 1;
+		$.each(data.result, function() {
+			$("tbody").append("<tr><td>"+this['created_at']+"</td><td>"+this['dorm_type']+", "+this['room']+"</td><td>"+this['temp_val']+"</td><td>"+this['hum_val']+"</td><td>"+this['smoke_lvl']+"</td><td>"+if(this['smoke_lvl'] < '300'){"<button class='btn btn-primary btn-sm'>No smoke detected!</button>"}else{"<button class='btn btn-danger btn-sm'>Smoke detected!</button>"}+"</td></tr>");
+		});
+	});
+}
+</script> -->
 </body>
 </html>
