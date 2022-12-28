@@ -61,17 +61,8 @@ class Monitoring extends CI_Controller
     public function telegram(){
         $apiToken = "5456917539:AAGMN3qHs2oWUkzfAgtyuXoTpO4jroX-VT0";
 
-        $string = '<b>bold</b>, <strong>bold</strong>
-        <i>italic</i>, <em>italic</em>
-        <u>underline</u>, <ins>underline</ins>
-        <s>strikethrough</s>, <strike>strikethrough</strike>, <del>strikethrough</del>
-        <span class="tg-spoiler">spoiler</span>, <tg-spoiler>spoiler</tg-spoiler>
-        <b>bold <i>italic bold <s>italic bold strikethrough <span class="tg-spoiler">italic bold strikethrough spoiler</span></s> <u>underline italic bold</u></i> bold</b>
-        <a href="http://www.example.com/">inline URL</a>
-        <a href="tg://user?id=123456789">inline mention of a user</a>
-        <code>inline fixed-width code</code>
-        <pre>pre-formatted fixed-width code block</pre>
-        <pre><code class="language-python">pre-formatted fixed-width code block written in the Python programming language</code></pre>';
+        $string = '<strong>Smoke is detected!! Please go outside as soon as possible and seek for safe place.
+        This is an automatically generated bot, please do not reply.</strong>';
     
         $data = [
             'chat_id' => '1470184033',
@@ -116,8 +107,8 @@ class Monitoring extends CI_Controller
 
         // Content
         $mail->isHTML(true);                                  // Set email format to HTML
-        $mail->Subject = 'Reset Password';
-        $mail->Body    = '<strong>Hai, You received this email because there was a request to reset your password.</strong><br><strong>Silakan klik link ini:</strong>';
+        $mail->Subject = 'Alert! Smoke is detected in your area';
+        $mail->Body    = '<strong>Smoke is detected in your area, please be careful, go outside and seek safe place for yourself</strong>';
 
         if ($mail->send()) {
             echo "Send email successfully";

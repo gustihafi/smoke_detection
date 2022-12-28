@@ -74,7 +74,7 @@ class Forgot_pass extends CI_Controller
         // Content
         $mail->isHTML(true);                                  // Set email format to HTML
         $mail->Subject = 'Reset Password';
-        $mail->Body    = '<strong>Hai, You received this email because there was a request to reset your password.</strong><br><strong>Silakan klik link ini:</strong>'.$link;
+        $mail->Body    = '<strong>Hi, You received this email because there was a request to reset your password.</strong><br><strong>Silakan klik link ini:</strong>'.$link;
 
         if ($mail->send()) {
             $this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible">

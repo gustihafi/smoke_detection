@@ -24,7 +24,7 @@ class M_moni extends CI_Model
     }
 
     public function get_grafik($id_dorm){
-        $query = $this->db->query("SELECT * FROM temp a JOIN dormitory b ON a.id_dorm=b.id_dorm WHERE a.id_dorm='$id_dorm' ORDER BY a.created_at DESC");
+        $query = $this->db->query("SELECT * FROM temp a JOIN dormitory b ON a.id_dorm=b.id_dorm WHERE a.id_dorm='$id_dorm' GROUP BY a.created_at ORDER BY a.created_at DESC LIMIT 5");
           
         if($query->num_rows() > 0){
             foreach($query->result() as $data){
@@ -35,7 +35,7 @@ class M_moni extends CI_Model
     }
 
     public function get_time(){
-        $query = $this->db->query("SELECT created_at FROM temp a JOIN dormitory b ON a.id_dorm=b.id_dorm ORDER BY a.created_at DESC");
+        $query = $this->db->query("SELECT created_at FROM temp a JOIN dormitory b ON a.id_dorm=b.id_dorm ORDER BY a.created_at DESC LIMIT 5");
           
         if($query->num_rows() > 0){
             foreach($query->result() as $data){
